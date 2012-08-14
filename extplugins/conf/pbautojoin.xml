@@ -1,0 +1,15 @@
+<configuration plugin="pbautojoin">
+    <settings name="settings">
+
+	<!--min level required for enable / disable plugin -->
+        <set name="pbautojoinlevel">100</set>
+<!--min level authorized to not respect autojoin -->
+        <set name="autojoinminlevel">40</set>
+<!--min level for change team without warn -->
+        <set name="nowarnminlevel">20</set>
+<!--plugin actived on/off-->
+        <set name="pbautojoin">on</set>
+
+        </settings>
+</configuration>
+
