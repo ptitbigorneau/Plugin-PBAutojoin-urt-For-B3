@@ -1,7 +1,7 @@
 # PBAutojoin Plugin b3 for UrT
 
 __author__  = 'PtitBigorneau www.ptitbigorneau.fr'
-__version__ = '1.1.2'
+__version__ = '1.2'
 
 import b3, time, threading, thread
 import b3.plugin
@@ -13,6 +13,11 @@ class PbautojoinPlugin(b3.plugin.Plugin):
     _adminPlugin = None
     _test = 'ok'
     _cronTab = None
+
+    _pbautojoin = "on"
+    _pbautojoinlevel = 100
+    _autojoinminlevel = 40
+    _nowarnminlevel = 20
 
     def onStartup(self):
         
@@ -30,11 +35,30 @@ class PbautojoinPlugin(b3.plugin.Plugin):
         self.registerEvent(b3.events.EVT_GAME_ROUND_START)
    
     def onLoadConfig(self):
+
+        try:
+            self._pbautojoin = self.config.get('settings', 'pbautojoin')
+        except Exception, err:
+            self.warning("Using default value %s for pbautojoin. %s" % (self._pbautojoin, err))
+        self.debug('PBAutojoin : %s' % self._pbautojoin)
+
+        try:
+            self._pbautojoinlevel = self.config.getint('settings', 'pbautojoinlevel')
+        except Exception, err:
+            self.warning("Using default value %s for pbautojoinlevel. %s" % (self._pbautojoinlevel, err))
+        self.debug('pbautojoinlevel : %s' % self._pbautojoinlevel)
+
+        try:
+            self._autojoinminlevel = self.config.getint('settings', 'autojoinminlevel')
+        except Exception, err:
+            self.warning("Using default value %s for autojoinminlevel. %s" % (self._autojoinminlevel, err))
+        self.debug('autojoinminlevel : %s' % self._autojoinminlevel)
     
-        self._pbautojoin = self.config.get('settings', 'pbautojoin')
-        self._pbautojoinlevel = self.config.getint('settings', 'pbautojoinlevel')
-        self._autojoinminlevel = self.config.getint('settings', 'autojoinminlevel')
-        self._nowarnminlevel = self.config.getint('settings', 'nowarnminlevel')
+        try:
+            self._nowarnminlevel = self.config.getint('settings', 'nowarnminlevel')
+        except Exception, err:
+            self.warning("Using default value %s for nowarnminlevel. %s" % (self._nowarnminlevel, err))
+        self.debug('nowarnminlevel : %s' % self._nowarnminlevel)
 
     def onEvent(self, event):
 
