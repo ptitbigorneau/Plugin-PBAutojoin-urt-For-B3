@@ -2,7 +2,7 @@
 # Plugin for B3 (www.bigbrotherbot.com)
 # www.ptitbigorneau.fr
 
-pbautojoin B3 plugin (v1.2) for Urban Terror
+pbautojoin B3 plugin (v1.2.1) for Urban Terror
 
 Installation:
 

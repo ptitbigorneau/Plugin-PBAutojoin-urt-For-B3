@@ -67,7 +67,7 @@ class PbautojoinPlugin(b3.plugin.Plugin):
             swaproles = self.console.getCvar('g_swaproles').getInt()
             gametype = self.console.getCvar('g_gametype').getInt()
 
-            if gametype == 0 or gametype == 1:
+            if gametype == 0 or gametype == 1 or gametype == 9:
                 return False
 
             if event.type == b3.events.EVT_GAME_MAP_CHANGE:
