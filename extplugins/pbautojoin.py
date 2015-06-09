@@ -65,17 +65,19 @@ class PbautojoinPlugin(b3.plugin.Plugin):
 
             thread.start_new_thread(self.wait, (30,))
 
-        if event.type == b3.events.EVT_GAME_ROUND_START and swaproles == 1:
+        if event.type == b3.events.EVT_GAME_ROUND_START:
 
             swaproles = self.console.getCvar('g_swaproles').getInt()
             gametype = self.console.getCvar('g_gametype').getInt()
-
+			
             if gametype == 0 or gametype == 1 or gametype == 9:
                 return False        
 
-            self._test = None
+            if swaproles == 1:
 
-            thread.start_new_thread(self.wait, (10,))     
+                self._test = None
+
+                thread.start_new_thread(self.wait, (10,))     
 
         if event.type == b3.events.EVT_CLIENT_TEAM_CHANGE:
         
